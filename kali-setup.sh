@@ -5,8 +5,6 @@ set -e
 sudo id
 USERNAME=$(whoami)
 echo "[+] Adding $USERNAME to sudoers file"
-#sudo echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
-
 echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" | sudo EDITOR='tee -a' visudo
 
 # Update and install packages, including docker CE
@@ -38,6 +36,7 @@ echo "[+] adding $USERNAME to docker group"
 sudo usermod -aG docker $USERNAME
 
 # Install OMZSH
+echo "[+] Installing OhMyZSH"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 zsh -c "git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 zsh -c "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
@@ -45,3 +44,10 @@ sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/g' ~/.zshrc
 sudo chsh -s $(which zsh) $USERNAME
 
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' > ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' > ~/.zshrc
+echo 'eval "$(pyenv init -)"' > ~/.zshrc
+echo 'eval "$(pyenv virtualenv-init -)"' > ~/.zshrc
+
+curl -s https://raw.githubusercontent.com/Ari-Weinberg/kali-init-setup/main/terminator_config -o ~/.config/terminator/config
