@@ -51,5 +51,5 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
 echo "[+] Adding terminator config"
-mkdir
+mkdir ~/.config/terminator/
 curl -s https://raw.githubusercontent.com/Ari-Weinberg/kali-init-setup/main/terminator_config -o ~/.config/terminator/config
