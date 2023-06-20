@@ -45,9 +45,9 @@ sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/g' ~/.zshrc
 sudo chsh -s $(which zsh) $USERNAME
 
 
-echo 'export PYENV_ROOT="$HOME/.pyenv"' > ~/.zshrc
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' > ~/.zshrc
-echo 'eval "$(pyenv init -)"' > ~/.zshrc
-echo 'eval "$(pyenv virtualenv-init -)"' > ~/.zshrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc
 
 curl -s https://raw.githubusercontent.com/Ari-Weinberg/kali-init-setup/main/terminator_config -o ~/.config/terminator/config
